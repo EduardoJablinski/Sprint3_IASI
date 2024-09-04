@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Empresas</title>
+    <meta charset="UTF-8">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<h1>Empresas</h1>
+<a href="#" th:href="@{/empresas/novo}">Nova Empresa</a>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Setor</th>
+        <th>Localização</th>
+        <th>Tipo</th>
+        <th>Conformidade</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="empresa : ${empresas}">
+        <td th:text="${empresa.id}"></td>
+        <td th:text="${empresa.nome}"></td>
+        <td th:text="${empresa.setorIndustrial}"></td>
+        <td th:text="${empresa.localizacao}"></td>
+        <td th:text="${empresa.tipo}"></td>
+        <td th:text="${empresa.conformidadeRegular}"></td>
+        <td>
+            <a th:href="@{/empresas/editar/{id}(id=${empresa.id})}">Editar</a> |
+            <a th:href="@{/empresas/deletar/{id}(id=${empresa.id})}" onclick="return confirm('Você tem certeza que deseja deletar esta empresa?');">Deletar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

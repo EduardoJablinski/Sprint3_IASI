@@ -34,6 +34,7 @@ public class UsuarioController {
     @PostMapping("/login")
     public String login(@RequestParam String nomeUsuario, @RequestParam String senha, Model model) {
         boolean loginSucesso = usuarioService.verificarCredenciais(nomeUsuario, senha);
+        System.out.println("Login sucesso: " + loginSucesso);
         if (loginSucesso) {
             return "redirect:/empresas";
         } else {

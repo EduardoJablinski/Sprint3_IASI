@@ -33,8 +33,8 @@ public class SecurityConfig {
                 )
                 .logout(logout ->
                         logout.permitAll()
-                );
-
+                )
+                .csrf(csrf -> csrf.disable()); // Desativa CSRF
         return http.build();
     }
 }

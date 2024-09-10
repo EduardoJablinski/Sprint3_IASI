@@ -24,8 +24,12 @@ public class UsuarioService {
     public boolean verificarCredenciais(String nomeUsuario, String senha) {
         Usuario usuario = usuarioRepository.findByNomeUsuario(nomeUsuario);
         if (usuario != null) {
-            return passwordEncoder.matches(senha, usuario.getSenhaUsuario());
+            System.out.println("Usuário encontrado: " + usuario.getNomeUsuario());
+            boolean matches = passwordEncoder.matches(senha, usuario.getSenhaUsuario());
+            System.out.println("Senha correta: " + matches);
+            return matches;
         }
+        System.out.println("Usuário não encontrado");
         return false;
     }
 }
